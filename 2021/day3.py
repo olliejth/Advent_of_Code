@@ -43,6 +43,14 @@ def get_epsilon_value(gamma_val: str) -> str:
 
 def get_power_consumption(data_list: list[str]) -> int:
     """Returns the submarine power consumption from a list of binary inputs"""
+
+    if not isinstance(data_list, list):
+        raise TypeError("Invalid input data type.")
+
+    for d in data_list:
+        if not isinstance(d, str):
+            raise TypeError("Input list contains invalid data types.")
+
     gamma_value = get_gamma_value(data_list)
     epsilon_value = get_epsilon_value(gamma_value)
 
