@@ -1,47 +1,21 @@
-
-def count_occurences(letter: str, password: str) -> int:
-    """Returns the number of occurences of a letter in a password"""
-    counter = 0
-
-    for l in password:
-        if l == letter:
-            counter += 1
-
-    return counter
+"""Day 1 advent of code 2020"""
 
 
-def reformat_input(input: str) -> dict:
-    """Extracts the key information from a provided data string."""
-    pword = input.split(" ")[-1]
-    values = input.split(" ")[0]
-    minimum = int(values.split("-")[0])
-    maximum = int(values.split("-")[1])
-    letter = input.split(" ")[1][0]
+def return_pair_product(values: list):
+    """Returns the product of two numbers in a list with a sum of 2000"""
 
-    return {
-        "min": minimum,
-        "max": maximum,
-        "letter": letter,
-        "password": pword
-    }
-
-
-def get_number_of_valid_passwords(data: list[str]) -> int:
-    """Returns number of valid passwords in a provided list."""
-    counter = 0
-    for item in data:
-        info_dict = reformat_input(item)
-        occurences = count_occurences(
-            info_dict["letter"], info_dict["password"])
-        if occurences >= info_dict["min"] and occurences <= info_dict["max"]:
-            counter += 1
-
-    return counter
+    for n in range(len(values)):
+        copy_list = [x for x in values]
+        number = copy_list[n]
+        copy_list.pop(n)
+        for num in copy_list:
+            if num + number == 2020:
+                return num * number
 
 
 if __name__ == "__main__":
-    # CODE
-    with open("test_data.txt", "r", encoding="utf-8") as f_obj:
-        password_data = [word.strip() for word in f_obj.readlines()]
 
-    print(get_number_of_valid_passwords(password_data))
+    with open("test_data.txt", "r", encoding="utf-8") as f_obj:
+        data = [int(entry.strip()) for entry in f_obj.readlines()]
+
+    print(return_pair_product(data))
