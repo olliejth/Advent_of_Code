@@ -59,7 +59,7 @@ def get_result(puzzle_input: list[str]) -> int:
 
 
 def is_x_mas_square(puzzle_in: list[str], r: int, i: int) -> bool:
-    '''Returns whether an A has a surrounding MAS X shape'''
+    '''Returns whether an A has a surrounding "MAS" X shape.'''
 
     if puzzle_in[r][i] != 'A':
         return False
@@ -84,7 +84,7 @@ def is_x_mas_square(puzzle_in: list[str], r: int, i: int) -> bool:
 
 
 def get_result_two(puzzle_input: list[str]) -> int:
-    '''Finds occurences of X-MAS in list of strings.'''
+    '''Finds occurrences of X-MAS squares in list of strings.'''
 
     puzzle_len = len(puzzle_input)
     row_len = len(puzzle_input[0])
