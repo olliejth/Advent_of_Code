@@ -23,24 +23,6 @@ def get_middle_sum(valid_ups: list[list]) -> int:
     return valid_sum
 
 
-# def fix_invalid(invalid_updates: list[list], rules: list[tuple]) -> list[list]:
-#     '''Returns fixed version of invalid updates.'''
-
-#     output_list = []
-
-#     for update in invalid_updates:
-#         print(update)
-#         x = False
-#         while x is False:
-#             shuffle(update)
-#             if is_valid_update(update, rules):
-#                 output_list.append(update)
-#                 print(f'Finished -> {invalid_updates.index(update)}')
-#                 x = True
-
-#     return output_list
-
-
 def find_blockers(idx: int, num: int, update: list[int], rules: list[tuple]) -> list[bool]:
     '''Finds whether there are any rules which would stop'''
 
@@ -52,7 +34,7 @@ def find_blockers(idx: int, num: int, update: list[int], rules: list[tuple]) -> 
     return blocker_list
 
 
-def fix_invalid_non_random(invalid_updates: list[list], rules: list[tuple]) -> list[list]:
+def fix_invalid(invalid_updates: list[list], rules: list[tuple]) -> list[list]:
     '''Returns fixed version of invalid updates.'''
     output_list = []
 
@@ -66,8 +48,6 @@ def fix_invalid_non_random(invalid_updates: list[list], rules: list[tuple]) -> l
                     new_update.append(num)
                     del update[idx]
         output_list.append(new_update)
-
-    print(output_list)
 
     return output_list
 
@@ -84,15 +64,13 @@ def get_result(rules: list[tuple], updates: list[list]) -> int:
         else:
             invalid_updates.append(update)
 
-    print(f'Invalid updates length: {len(invalid_updates)}')
-
     valid_sum = get_middle_sum(valid_updates)
 
-    fixed_updates = fix_invalid_non_random(invalid_updates, rules)
+    fixed_updates = fix_invalid(invalid_updates, rules)
 
     invalid_sum = get_middle_sum(fixed_updates)
 
-    return invalid_sum
+    return valid_sum, invalid_sum
 
 
 if __name__ == "__main__":
@@ -113,4 +91,7 @@ if __name__ == "__main__":
             up_list.append(int(num))
         updates.append(up_list)
 
-    print(get_result(rules, updates))
+    valid_sum, invalid_sum = get_result(rules, updates)
+
+    print(f'Valid sum    :  {valid_sum}')
+    print(f'Invalid sum  :  {invalid_sum}')
