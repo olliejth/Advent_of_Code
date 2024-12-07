@@ -119,13 +119,3 @@ if __name__ == "__main__":
     print(f'Part 2 result: {get_result_2(data)}')
 
     print(f'\nTime elapsed: {datetime.now() - t1}')
-
-    # for line in data:
-    #     print(line)
-
-    # print('\n\n')
-
-    # new_data = make_new_data(0, 0, data)
-
-    # for line in new_data:
-    #     print(line)
