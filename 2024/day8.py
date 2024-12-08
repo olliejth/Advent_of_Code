@@ -91,4 +91,4 @@ if __name__ == "__main__":
     with open('result.txt', 'r', encoding='utf-8') as f_obj:
         result = [obj.strip() for obj in f_obj.readlines()]
 
-    print(f'\nNumber of antinodes: {len(antennas)}\n')
+    print(f'\nNumber of anti-nodes: {len(antennas)}\n')
